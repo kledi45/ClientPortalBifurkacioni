@@ -1,0 +1,449 @@
+﻿@model ClientPortalBifurkacioni.Models.CustomModels.CustomerCardListResponse
+
+@{
+    ViewData["Title"] = "Kartela Ime";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<!-- Chart.js CDN included directly in the file -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@if (!Model.Customers.Any())
+{
+    <div class="alert alert-warning mt-4">
+        Nuk u gjet asnjë konsumator i lidhur me këtë përdorues.
+    </div>
+    return;
+} else
+{
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <select class="form-select w-auto" id="customerSelector">
+                    @for (int i = 0; i < Model.Customers.Count; i++)
+                    {
+                        <option value="@i">@Model.Customers[i].CustomerCode - @Model.Customers[i].CustomerName</option>
+                    }
+                </select>
+                <div class="fw-semibold text-uppercase text-secondary" id="propertyAddress">
+                    @Model.Customers[0].PropertyAddress
+                </div>
+            </div>
+
+            <div class="row g-3 text-center text-sm-start" id="customerSummary">
+                <div class="col-6 col-sm-4 col-md-2">
+                    <div class="text-muted small">Borxhi</div>
+                    <div class="fs-5 text-danger" id="totalDebt">@Model.Customers[0].TotalDebt €</div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <div class="text-muted small">Pagesa e fundit</div>
+                    <div class="fs-6" id="lastPaymentAmount">@Model.Customers[0].LastPaymentAmount €</div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <div class="text-muted small">Paguar më</div>
+                    <div class="fs-6" id="lastPaymentDate">@Model.Customers[0].LastPaymentDate</div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <div class="text-muted small">Fatura e fundit</div>
+                    <div class="fs-6" id="lastBillAmount">@Model.Customers[0].LastBillAmount €</div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <div class="text-muted small">Faturuar më</div>
+                    <div class="fs-6" id="lastBillDate">@Model.Customers[0].LastBillDate</div>
+                </div>
+                <div class="col-6 col-sm-4 col-md-2 d-flex align-items-end justify-content-end">
+                    <button class="btn btn-success" id="payButton">Paguaj</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Payment Selection -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Zgjedhni shumën e pagesës</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <input type="radio" id="fullAmount" name="paymentOption" value="full" checked>
+                        <label for="fullAmount">Pagesë e plotë</label>
+                        <span id="fullAmountValue" class="ms-2"></span> €
+                    </div>
+                    <div class="mb-3">
+                        <input type="radio" id="customAmount" name="paymentOption" value="custom">
+                        <label for="customAmount">Përcakto shumën</label>
+                        <input type="number" id="customAmountInput" class="form-control ms-2" style="width: 100px; display: inline-block;" min="0" step="0.01" disabled>
+                        <span> €</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Mbyl</button>
+                    <button type="button" class="btn btn-success" id="continuePayment">Vazhdo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 mb-4 mb-md-0">
+            <div class="list-group shadow-sm" id="sidebarTabs">
+                <a href="#" class="list-group-item list-group-item-action active" data-tab="kryefaqja">
+                    <i class="bi bi-bar-chart me-2"></i> Kryefaqja
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" data-tab="leximet">
+                    <i class="bi bi-receipt-cutoff me-2"></i> Leximet
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" data-tab="faturat">
+                    <i class="bi bi-file-earmark-text me-2"></i> Faturat
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" data-tab="pagesat">
+                    <i class="bi bi-credit-card me-2"></i> Pagesat
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div id="tab-kryefaqja" class="tab-pane active">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h5 class="mb-0">Shpenzimet</h5>
+                                <select class="form-select w-auto form-select-sm">
+                                    <option>Sipas vlerës (€)</option>
+                                </select>
+                            </div>
+                            <canvas id="expenseChart" class="img-fluid"></canvas>
+                        </div>
+
+                        <div id="tab-leximet" class="tab-pane" style="display:none;">
+                            @if (Model.Customers.Any() && Model.Customers[0].Meter != null)
+                            {
+                                var meter = Model.Customers[0].Meter;
+                                <div class="mb-3">
+                                    <strong>Numri serik:</strong> @meter.SerialNumber   
+                                    <strong>Gjendja aktuale:</strong> @meter.CurrentReading m³   
+                                    <strong>Gjendja paraprake:</strong> @meter.PreviousReading m³   
+                                    <strong>Konsumimi i fundit:</strong> @meter.LastConsumption m³   
+                                    <strong>Leximi i fundit:</strong> @meter.LastReadingPeriod
+                                    <button class="btn btn-sm btn-success float-end">Shkarko</button>
+                                </div>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Periudha</th>
+                                            <th>Gjendja</th>
+                                            <th>Konsumuara</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.Customers[0].MeterReadings.Count; i++)
+                                        {
+                                            var reading = Model.Customers[0].MeterReadings[i];
+                                            <tr>
+                                                <td>@(i + 1)</td>
+                                                <td>@reading.Period</td>
+                                                <td>@reading.Reading m³</td>
+                                                <td>@reading.Consumption m³</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
+
+                        <div id="tab-faturat" class="tab-pane" style="display:none;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Periudha</th>
+                                        <th>Referenca për pagesë</th>
+                                        <th>Numri i faturës</th>
+                                        <th>Shuma</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.Customers[0].Invoices.Count; i++)
+                                    {
+                                        var invoice = Model.Customers[0].Invoices[i];
+                                        <tr>
+                                            <td>@(i + 1)</td>
+                                            <td>@invoice.Period</td>
+                                            <td>@invoice.PaymentReference</td>
+                                            <td>@invoice.InvoiceNumber</td>
+                                            <td>@invoice.Amount €</td>
+                                            @*                                         <td><button class="btn btn-success btn-sm">Paguaj</button></td>
+                                    *@
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="tab-pagesat" class="tab-pane" style="display:none;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Data</th>
+                                        <th>Banka</th>
+                                        <th>Shuma</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.Customers[0].Payments.Count; i++)
+                                    {
+                                        var payment = Model.Customers[0].Payments[i];
+                                        <tr>
+                                            <td>@(i + 1)</td>
+                                            <td>@payment.Date</td>
+                                            <td>@payment.Bank</td>
+                                            <td>@payment.Amount €</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+    <script>
+        // Serialize customer data from the model, safely encoded
+        const customers = @Html.Raw(Json.Serialize(Model.Customers));
+
+        // Utility function to escape HTML to prevent XSS
+        function escapeHtml(unsafe) {
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Initialize Chart.js instance once
+        const ctx = document.getElementById('expenseChart').getContext('2d');
+        let expenseChartInstance = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Janar', 'Shkurt', 'Mars', 'Prill', 'Maj', 'Qershor', 'Korrik', 'Gusht', 'Shtator', 'Tetor', 'Nëntor', 'Dhjetor'],
+                datasets: [
+                    {
+                        label: '2024',
+                        data: [],
+                        backgroundColor: 'rgba(255, 215, 0, 0.7)',
+                        borderColor: 'rgba(255, 215, 0, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: '2025',
+                        data: [],
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Shpenzimet (€)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                return `${context.dataset.label}: ${context.parsed.y} €`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Update customer data when selector changes
+        $("#customerSelector").on("change", function () {
+            const index = $(this).val();
+            const selected = customers[index];
+            if (!selected) return;
+
+            // Update summary fields
+            $("#propertyAddress").text(selected.propertyAddress || '');
+            $("#totalDebt").text(`${selected.totalDebt || 0} €`);
+            $("#lastBillAmount").text(`${selected.lastBillAmount || 0} €`);
+            $("#lastBillDate").text(selected.lastBillDate || '');
+            $("#lastPaymentAmount").text(`${selected.lastPaymentAmount || 0} €`);
+            $("#lastPaymentDate").text(selected.lastPaymentDate || '');
+
+            // Update meter readings
+            let meterHtml = '';
+            if (selected.meter) {
+                const meter = selected.meter;
+                meterHtml = `
+                            <div class="mb-3">
+                                <strong>Numri serik:</strong> ${escapeHtml(meter.serialNumber || '')} &nbsp;
+                                <strong>Gjendja aktuale:</strong> ${escapeHtml((meter.currentReading || 0).toString())} m³ &nbsp;
+                                <strong>Gjendja paraprake:</strong> ${escapeHtml((meter.previousReading || 0).toString())} m³ &nbsp;
+                                <strong>Konsumimi i fundit:</strong> ${escapeHtml((meter.lastConsumption || 0).toString())} m³ &nbsp;
+                                <strong>Leximi i fundit:</strong> ${escapeHtml(meter.lastReadingPeriod || '')}
+                                <button class="btn btn-sm btn-success float-end">Shkarko</button>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Periudha</th>
+                                        <th>Gjendja</th>
+                                        <th>Konsumuara</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${selected.meterReadings?.map((r, i) => `
+                                        <tr>
+                                            <td>${i + 1}</td>
+                                            <td>${escapeHtml(r.period || '')}</td>
+                                            <td>${escapeHtml((r.reading || 0).toString())} m³</td>
+                                            <td>${escapeHtml((r.consumption || 0).toString())} m³</td>
+                                        </tr>
+                                    `).join('') || ''}
+                                </tbody>
+                            </table>
+                        `;
+            }
+            $("#tab-leximet").html(meterHtml);
+
+            // Update invoices
+            const invoicesHtml = `
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Periudha</th>
+                                    <th>Referenca për pagesë</th>
+                                    <th>Numri i faturës</th>
+                                    <th>Shuma</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${selected.invoices?.map((inv, i) => `
+                                    <tr>
+                                        <td>${i + 1}</td>
+                                        <td>${escapeHtml(inv.period || '')}</td>
+                                        <td>${escapeHtml(inv.paymentReference || '')}</td>
+                                        <td>${escapeHtml(inv.invoiceNumber || '')}</td>
+                                        <td>${escapeHtml((inv.amount || 0).toString())} €</td>
+                                    </tr>
+                                `).join('') || ''}
+                            </tbody>
+                        </table>
+                    `;
+            $("#tab-faturat").html(invoicesHtml);
+
+            // Update payments
+            const paymentsHtml = `
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Data</th>
+                                    <th>Banka</th>
+                                    <th>Shuma</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${selected.payments?.map((p, i) => `
+                                    <tr>
+                                        <td>${i + 1}</td>
+                                        <td>${escapeHtml(p.date || '')}</td>
+                                        <td>${escapeHtml(p.bank || '')}</td>
+                                        <td>${escapeHtml((p.amount || 0).toString())} €</td>
+                                    </tr>
+                                `).join('') || ''}
+                            </tbody>
+                        </table>
+                    `;
+            $("#tab-pagesat").html(paymentsHtml);
+
+            // Update expense chart dynamically
+            const expenses2024 = (selected.expenses || []).filter(e => e.year === 2024).map(e => ({ month: e.month, amount: e.amount }));
+            const expenses2025 = (selected.expenses || []).filter(e => e.year === 2025).map(e => ({ month: e.month, amount: e.amount }));
+            expenseChartInstance.data.datasets[0].data = expenses2024.map(e => e.amount);
+            expenseChartInstance.data.datasets[1].data = expenses2025.map(e => e.amount);
+            expenseChartInstance.update();
+        });
+
+        // Handle Paguaj button click to open modal
+        $("#payButton").on("click", function () {
+            const selected = customers[$("#customerSelector").val()];
+            if (!selected) return;
+
+            const totalDebt = selected.totalDebt || 0;
+            $("#fullAmountValue").text(totalDebt);
+            $("#customAmountInput").val("0.00");
+
+            $("#paymentModal").modal("show");
+        });
+
+        // Handle Vazhdo button click in modal
+        $("#continuePayment").on("click", function () {
+            const selected = customers[$("#customerSelector").val()];
+            if (!selected) return;
+
+            const customerCode = selected.customerCode;
+            console.log(selected,'raaaa')
+            let amount;
+
+            if ($("#fullAmount").is(":checked")) {
+                amount = selected.totalDebt || 0;
+            } else if ($("#customAmount").is(":checked")) {
+                amount = parseFloat($("#customAmountInput").val()) || 0;
+                if (amount <= 0) {
+                    alert("Ju lutem vendosni një shumë të vlefshme.");
+                    return;
+                }
+            }
+
+            // Construct URL with encoded parameters
+            const url = `/Payment/Preview?customerCode=${customerCode}&amount=${amount}`;
+            window.location.href = url;
+        });
+
+        // Toggle custom amount input enable/disable based on radio selection
+        $("input[name='paymentOption']").on("change", function () {
+            $("#customAmountInput").prop("disabled", $("#fullAmount").is(":checked"));
+        });
+
+        // Handle tab switching
+        $('#sidebarTabs a').click(function (e) {
+            e.preventDefault();
+            $('#sidebarTabs a').removeClass('active');
+            $(this).addClass('active');
+
+            const tab = $(this).data('tab');
+            $('.tab-pane').hide();
+            $(`#tab-${tab}`).show();
+        });
+
+        // Trigger change on page load to initialize the first customer's data
+        $("#customerSelector").trigger("change");
+    </script>
+    }
+
+}

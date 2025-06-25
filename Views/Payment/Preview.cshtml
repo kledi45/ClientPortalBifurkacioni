@@ -1,0 +1,95 @@
+﻿@using System.Security.Claims
+@model ClientPortalBifurkacioni.Models.CustomModels.CustomerCardListResponse
+
+@{
+    ViewData["Title"] = "Pagesa për shpenzimet e ujit";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+
+    string code = ViewBag.CustomerCode as string;
+    decimal amount = (decimal)(ViewBag.Amount ?? 0);
+    string email = User?.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value ?? "";
+    string phone = User?.Claims.FirstOrDefault(c => c.Type == ClaimTypes.MobilePhone)?.Value ?? "";
+}
+
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="text-center mb-4 text-primary">Pagesa për shpenzimet e ujit</h2>
+
+        <hr />
+
+        <div class="text-center mb-3">
+            <img src="~/images/visa.svg" alt="Visa" style="height: 50px; margin-right: 10px;" />
+            <img src="~/images/masterCard.svg" alt="MasterCard" style="height: 50px;" />
+        </div>
+
+        <p class="text-center text-muted mb-4">
+            Gjatë pagesës pranohet çdo kartelë VISA apo MasterCard pavarësisht klient i cilës bankë jeni
+        </p>
+
+        <hr />
+
+        <div class="text-center mb-4">
+            <h5>Shuma e përzgjedhur: <strong>@amount.ToString("N2") €</strong></h5>
+            <h6>Tarifa e shërbimit bankar: <strong>0,00 €</strong></h6>
+            <h4 class="mt-3">Total për pagesë: <strong>@amount.ToString("N2") €</strong></h4>
+        </div>
+
+      @*   <div class="text-center mb-3" >
+            <div class="mb-2">
+                <input type="email" class="form-control" id="paymentEmail" value="@email" placeholder="Email Adresa" />
+            </div>
+            <div class="mb-2">
+                <input type="text" class="form-control" id="paymentPhone" value="@phone" placeholder="Numri Telefonik" />
+            </div>
+        </div> *@
+
+        <div class="text-center">
+            <button type="button" class="btn btn-success btn-lg px-5" id="payButton">Paguaj</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#payButton").on("click", function () {
+                const code = "@code";
+                const amount = @amount.ToString("F2").Replace(",", ".");
+                const email = "@email";
+                const phone = "@phone";
+
+                const data = {
+                    customerCode: code,
+                    email: email,
+                    phone: phone,
+                    amount: amount
+                };
+                console.log(data,'raaa')
+                // Clear any previous visual errors
+                $("#paymentEmail").removeClass("is-invalid");
+                $("#paymentPhone").removeClass("is-invalid");
+
+                Post(data, "/Public/SubmitPayment").done(function (res) {
+                    if (res.success && res.url) {
+                        window.location.href = res.url;
+                    } else {
+                        showAlert(res.message || "Pagesa dështoi.", 'message', 'danger');
+
+                        // Visual feedback per backend message
+                        if (res.message.toLowerCase().includes("email")) {
+                            $("#paymentEmail").addClass("is-invalid");
+                        } else if (res.message.toLowerCase().includes("phone")) {
+                            $("#paymentPhone").addClass("is-invalid");
+                        }
+                    }
+                }).fail(function (xhr, status, error) {
+                    showAlert("Nuk mund të përpunohet pagesa. Provoni përsëri.", 'message', 'danger');
+                });
+
+                return false;
+            });
+        });
+
+        
+    </script>
+}

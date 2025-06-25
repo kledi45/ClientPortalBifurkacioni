@@ -1,0 +1,761 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\obj\\Release\\net8.0\\scopedcss\\projectbundle\\ClientPortalBifurkacioni.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ClientPortalBifurkacioni.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\images\\Download_on_the_App_Store_Badge.svg",
+      "PackagePath": "staticwebassets\\images\\Download_on_the_App_Store_Badge.svg"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\images\\Google_Play_Store_Badge.svg",
+      "PackagePath": "staticwebassets\\images\\Google_Play_Store_Badge.svg"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\images\\kendoui.woff",
+      "PackagePath": "staticwebassets\\images\\kendoui.woff"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\images\\logo.png",
+      "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\images\\masterCard.png",
+      "PackagePath": "staticwebassets\\images\\masterCard.png"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\images\\masterCard.svg",
+      "PackagePath": "staticwebassets\\images\\masterCard.svg"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\images\\small-banner-1.jpg",
+      "PackagePath": "staticwebassets\\images\\small-banner-1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\images\\small-banner-2.jpg",
+      "PackagePath": "staticwebassets\\images\\small-banner-2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\images\\small-banner-3.jpg",
+      "PackagePath": "staticwebassets\\images\\small-banner-3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\images\\visa.svg",
+      "PackagePath": "staticwebassets\\images\\visa.svg"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\ajax.js",
+      "PackagePath": "staticwebassets\\js\\ajax.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\app.js",
+      "PackagePath": "staticwebassets\\js\\app.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\bootbox.min.js",
+      "PackagePath": "staticwebassets\\js\\bootbox.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\bootstrap-datetimepicker.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap-datetimepicker.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\call-center.js",
+      "PackagePath": "staticwebassets\\js\\call-center.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\chart.js",
+      "PackagePath": "staticwebassets\\js\\chart.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\comboTreePlugin.js",
+      "PackagePath": "staticwebassets\\js\\comboTreePlugin.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\dataTables.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\js\\dataTables.bootstrap4.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\dropdowntree.js",
+      "PackagePath": "staticwebassets\\js\\dropdowntree.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\dropfiles.js",
+      "PackagePath": "staticwebassets\\js\\dropfiles.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\email-recipient.js",
+      "PackagePath": "staticwebassets\\js\\email-recipient.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\form-validation.js",
+      "PackagePath": "staticwebassets\\js\\form-validation.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\fullcalendar.min.js",
+      "PackagePath": "staticwebassets\\js\\fullcalendar.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\html5shiv.min.js",
+      "PackagePath": "staticwebassets\\js\\html5shiv.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\jquery-3.2.1.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery-3.2.1.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\jquery-ui.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery-ui.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\jquery-validator.js",
+      "PackagePath": "staticwebassets\\js\\jquery-validator.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\jquery.dataTables.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.dataTables.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\jquery.fullcalendar.js",
+      "PackagePath": "staticwebassets\\js\\jquery.fullcalendar.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\jquery.js",
+      "PackagePath": "staticwebassets\\js\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\jquery.maskedinput.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.maskedinput.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\jquery.slimscroll.js",
+      "PackagePath": "staticwebassets\\js\\jquery.slimscroll.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\jquery.slimscroll.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.slimscroll.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\jquery.ui.touch-punch.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.ui.touch-punch.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\jspdf.min.js",
+      "PackagePath": "staticwebassets\\js\\jspdf.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\juqery-validator.js",
+      "PackagePath": "staticwebassets\\js\\juqery-validator.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\mask.js",
+      "PackagePath": "staticwebassets\\js\\mask.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\moment.min.js",
+      "PackagePath": "staticwebassets\\js\\moment.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\multiselect.min.js",
+      "PackagePath": "staticwebassets\\js\\multiselect.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\not-client-call-center.js",
+      "PackagePath": "staticwebassets\\js\\not-client-call-center.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\popper.min.js",
+      "PackagePath": "staticwebassets\\js\\popper.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\requests.js",
+      "PackagePath": "staticwebassets\\js\\requests.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\respond.min.js",
+      "PackagePath": "staticwebassets\\js\\respond.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\select2.min.js",
+      "PackagePath": "staticwebassets\\js\\select2.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\task.js",
+      "PackagePath": "staticwebassets\\js\\task.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\tinymce.min.js",
+      "PackagePath": "staticwebassets\\js\\tinymce.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\js\\toastr.min.js",
+      "PackagePath": "staticwebassets\\js\\toastr.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13527_20250623_140405.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13527_20250623_140405.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13529_20250623_140516.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13529_20250623_140516.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13529_20250623_140533.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13529_20250623_140533.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13537_20250623_141835.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13537_20250623_141835.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13537_20250623_141914.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13537_20250623_141914.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13538_20250623_142132.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13538_20250623_142132.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13538_20250623_142151.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13538_20250623_142151.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13538_20250623_142158.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13538_20250623_142158.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13538_20250623_142229.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13538_20250623_142229.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13541_20250623_142635.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13541_20250623_142635.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13541_20250623_142648.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13541_20250623_142648.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13541_20250623_142651.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13541_20250623_142651.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13541_20250623_142700.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13541_20250623_142700.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13549_20250623_150635.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13549_20250623_150635.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13556_20250623_153022.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13556_20250623_153022.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13556_20250623_153043.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13556_20250623_153043.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13556_20250623_153236.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13556_20250623_153236.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13557_20250623_153452.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13557_20250623_153452.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13558_20250623_154641.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13558_20250623_154641.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13559_20250623_155135.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13559_20250623_155135.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13605_20250624_100225.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13605_20250624_100225.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13606_20250624_100427.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13606_20250624_100427.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13607_20250624_100615.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13607_20250624_100615.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-order-details\\order_13612_20250624_101028.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-order-details\\order_13612_20250624_101028.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250619_151414.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250619_151414.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250619_161847.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250619_161847.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_091248.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_091248.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_091448.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_091448.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_091617.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_091617.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_091719.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_091719.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_093913.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_093913.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_094311.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_094311.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_095108.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_095108.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_095202.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_095202.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_095615.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_095615.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_095722.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_095722.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_100836.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_100836.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_100937.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_100937.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_101024.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_101024.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_103220.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_103220.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_103445.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_103445.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_113501.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_113501.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_113620.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_113620.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_113750.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_113750.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_113913.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_113913.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_114048.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_114048.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_114206.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_114206.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_114442.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_114442.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_114509.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_114509.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_115246.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_115246.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_132923.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_132923.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_132927.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_132927.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_132952.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_132952.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_133211.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_133211.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_133328.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_133328.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_134616.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_134616.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_134652.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_134652.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_134845.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_134845.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_140024.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_140024.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_140124.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_140124.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_140321.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_140321.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_140449.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_140449.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_141804.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_141804.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_142100.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_142100.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_142448.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_142448.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_150608.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_150608.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_152951.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_152951.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_153433.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_153433.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_154611.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_154611.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250623_155111.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250623_155111.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250624_092545.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250624_092545.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250624_100146.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250624_100146.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250624_100359.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250624_100359.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250624_100553.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250624_100553.json"
+    },
+    {
+      "Id": "C:\\Users\\kledi\\OneDrive\\Desktop\\Bifurkacioni\\ClientPortalBifurkacioni\\ClientPortalBifurkacioni\\wwwroot\\logs\\quipu-responses\\response_20250624_101001.json",
+      "PackagePath": "staticwebassets\\logs\\quipu-responses\\response_20250624_101001.json"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.ClientPortalBifurkacioni.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.build.ClientPortalBifurkacioni.props",
+      "PackagePath": "build\\ClientPortalBifurkacioni.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ClientPortalBifurkacioni.props",
+      "PackagePath": "buildMultiTargeting\\ClientPortalBifurkacioni.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildTransitive.ClientPortalBifurkacioni.props",
+      "PackagePath": "buildTransitive\\ClientPortalBifurkacioni.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

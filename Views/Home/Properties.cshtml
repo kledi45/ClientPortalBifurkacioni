@@ -1,0 +1,129 @@
+﻿@model ClientPortalBifurkacioni.Models.CustomModels.CustomerCardListResponse
+
+@{
+    ViewData["Title"] = "Registro Pronë";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<div id="message"></div>
+<div class="row justify-content-center">
+    <!-- Shto Pronë Form (Left) -->
+    <div class="col-md-8">
+        <div class="card shadow-sm p-4 mb-4">
+            <h5 class="fw-bold mb-3">Regjistro Pronë</h5>
+            <p class="text-muted small">
+                Përmes kësaj dritare ju mund të shtoni pronën për të cilën do të monitoroni shpenzimet dhe të realizoni pagesa të sigurta direkt nga aplikacioni.
+                Ju lutemi që për pronën që dëshironi të shtoni, të shikoni njërën nga faturat e pranuara dhe brenda saj do ti gjeni informatat e nevojshme
+                për plotësimin e fushave "Shifra e konsumatorit" dhe "Numri i faturës".
+            </p>
+
+            <form id="registerPropertyForm">
+                <div class="mb-3">
+                    <input type="text" name="CustomerCode" class="form-control" placeholder="Shifra e konsumatorit" required />
+                </div>
+                <div class="mb-4">
+                    <input type="text" name="BillCode" class="form-control" placeholder="Numri i faturës" required />
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Regjistro</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Property Cards (Right) -->
+    <div class="col-md-4">
+        @if (Model.Customers != null && Model.Customers.Any())
+        {
+            foreach (var customer in Model.Customers)
+            {
+                <div class="card border border-primary mb-3">
+                    <div class="card-body d-flex justify-content-between align-items-center p-3">
+                        <div>
+                            <div class="text-primary fw-semibold">@customer.CustomerCode</div>
+                            <div class="small">@customer.CustomerName</div>
+                        </div>
+                        <form method="post" action="/Property/Delete">
+                            <input type="hidden" name="CustomerCode" value="@customer.CustomerCode" />
+                            <button type="button"
+                                    class="btn btn-danger btn-sm show-delete-modal"
+                                    data-name="@customer.CustomerName"
+                                    data-code="@customer.CustomerCode">
+                                Fshije
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+<div class="modal fade" id="deletePropertyModal" tabindex="-1" aria-labelledby="deletePropertyLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+            <div class="modal-header border-0">
+                <h5 class="modal-title w-100 fw-bold" id="deletePropertyLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                    <input type="hidden" name="CustomerCode" id="deleteCustomerCode" />
+                <button type="submit" class="btn btn-outline-primary w-100 mb-3" id="confirmDeleteBtn">Fshije</button>
+                    <button type="button" class="btn btn-outline-danger w-100" data-bs-dismiss="modal">Anulo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        let deleteCustomerCode = "";
+
+        $(document).on('click', '.show-delete-modal', function () {
+            const customerName = $(this).data('name');
+            deleteCustomerCode = $(this).data('code');
+
+            $("#deletePropertyLabel").text(customerName);
+            const modal = new bootstrap.Modal(document.getElementById('deletePropertyModal'));
+            modal.show();
+        });
+
+        $("#confirmDeleteBtn").on("click", function () {
+            const data = {
+                CustomerCode: deleteCustomerCode
+            };
+
+            Post(data, "/Home/DeleteProperty").done(function (res) {
+                if (res.success) {
+                    showAlert("Prona është fshirë me sukses", "message", "success");
+                    $("#deletePropertyModal").modal("toggle");
+                } else {
+                    showAlert("Një gabim ka ndodhur", "message", "error");
+                    $("#deletePropertyModal").modal("toggle");
+                }
+            });
+        });
+
+
+        $(document).ready(() => {
+            $("#registerPropertyForm").validate({
+                rules: {
+                    CustomerCode: { required: true },
+                    BillCode: { required: true }
+                },
+                messages: {
+                    CustomerCode: '<li class="parsley-required">Shifra e konsumatorit është e detyrueshme</li>',
+                    BillCode: '<li class="parsley-required">Numri i faturës është i detyrueshëm</li>'
+                },
+                submitHandler: function (form) {
+                    const data = $(form).serialize();
+                    Post(data, "/Home/RegisterProperty").done(function (res) {
+                        if (res.success) {
+                            showAlert("Prona u regjistrua me sukses !", "message", "success");
+                            setTimeout(() => { window.location.reload() }, 3000);
+                        } else {
+                            showAlert(res.messages.join("<br/>"), "message", "danger");
+                        }
+                    });
+                    return false;
+                }
+            });
+        })
+    </script>
+}

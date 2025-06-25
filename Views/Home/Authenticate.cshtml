@@ -1,0 +1,312 @@
+﻿@{
+    ViewData["Title"] = "Kyçu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+    <div id="message" class="mb-3"></div>
+
+    <div class="row justify-content-center align-items-stretch">
+        <div class="col-md-6 d-flex align-items-stretch">
+            <div class="bg-white p-4 rounded shadow-sm w-100 d-flex flex-column justify-content-center">
+                <h3 class="text-center fw-bold">e-Bifurkacioni</h3>
+                <p class="text-center text-muted">
+                    Me e-Bifurkacionin ju mund t’i shihni të gjitha transaksionet e bëra,<br />
+                    faturat e pranuara, bilancin tuaj aktual, kalkulatorin e ujit elektrike dhe<br />
+                    të merrni shumë shërbime të tjera të rëndësishme për ju.
+                </p>
+                <div class="d-flex justify-content-center align-items-center gap-2 mt-3 store-badges">
+                    <img src="~/images/Google_Play_Store_Badge.svg" alt="Google Play" class="store-img" />
+                    <img src="~/images/Download_on_the_App_Store_Badge.svg" alt="App Store" class="store-img" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 d-flex align-items-stretch">
+            <div class="bg-white p-4 rounded shadow-sm w-100">
+                <ul class="nav nav-tabs justify-content-center flex-wrap text-center mb-3" id="authTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab">Kyçu</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab">Regjistrohu</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pay-tab" data-bs-toggle="tab" data-bs-target="#pay" type="button" role="tab">Pagesa direkte</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="authTabsContent">
+                    <!-- Login -->
+                    <div class="tab-pane fade show active" id="login" role="tabpanel">
+                        <form id="login-form">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="email" placeholder="Llogaria/Email Adresa" />
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" name="password" placeholder="Fjalëkalimi" />
+                            </div>
+                            <div class="mb-3 text-end">
+                                <a href="#" class="text-primary small">Rikrijo fjalëkalimin</a>
+                            </div>
+                            <div class="d-grid mb-3">
+                                <button type="submit" class="btn btn-primary">Kyçu</button>
+                            </div>
+                            <select class="form-select">
+                                <option selected>Shqip</option>
+                                <option>English</option>
+                            </select>
+                        </form>
+                    </div>
+
+                    <!-- Register -->
+                    <div class="tab-pane fade" id="register" role="tabpanel">
+                        <form id="register-form">
+                            <div class="mb-2"><input type="text" class="form-control" name="firstName" placeholder="Emri" /></div>
+                            <div class="mb-2"><input type="text" class="form-control" name="lastName" placeholder="Mbiemri" /></div>
+                            <div class="mb-2"><input type="text" class="form-control" name="personalNumber" placeholder="Numri Personal" /></div>
+                            <div class="mb-2"><input type="text" class="form-control" name="phoneNumber" placeholder="Numri Telefonik" /></div>
+                            <div class="mb-2"><input type="email" class="form-control" name="registerEmail" placeholder="Email Adresa" /></div>
+                            <div class="mb-2"><input type="password" class="form-control" name="registerPassword" placeholder="Fjalëkalimi" /></div>
+                            <div class="mb-3"><input type="password" class="form-control" name="confirmPassword" placeholder="Konfirmo Fjalëkalimin" /></div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Regjistrohu</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Direct Payment -->
+                    <div class="tab-pane fade" id="pay" role="tabpanel">
+                        <form id="pay-form">
+                            <div class="d-flex justify-content-center align-items-center gap-2 mb-3 payment-badges">
+                                <img src="~/images/visa.svg" alt="Visa" class="payment-img" />
+                                <img src="~/images/masterCard.svg" alt="MasterCard" class="payment-img" />
+                            </div>
+                            <p>
+                                Këtu bëhen pagesat e drejtpërdrejta të faturave të ujit të shpenzuar, pa pasur
+                                nevojë të hapni llogari për të pranuar këtë shërbim.
+                            </p>
+                            <p>
+                                Shënoni shifrën tuaj të konsumatorit si dhe të dhënat tuaja bankare (kartela Visa ose MasterCard) për të vazhduar tutje.
+                            </p>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="customerCode" placeholder="Shifra e konsumatorit" />
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-primary">Kërko konsumatorin</button>
+                            </div>
+                        </form>
+                        <div id="payment-info" style="display:none;">
+                            <p><strong>Emri i konsumatorit:</strong> <span id="customerName">-</span></p>
+                            <p><strong>Fatura e fundit:</strong> <span id="lastBillAmount">-</span> €</p>
+                            <p><strong>Faturuar më:</strong> <span id="lastBillDate">-</span></p>
+                            <p><strong>Pagesa e fundit:</strong> <span id="lastPaymentAmount">-</span> €</p>
+                            <p><strong>Paguar më:</strong> <span id="lastPaymentDate">-</span></p>
+                            <p><strong>Borxhi total:</strong> <span id="totalDebt">-</span> €</p>
+
+                            <div class="mb-2">
+                                <input type="email" class="form-control" name="paymentEmail" placeholder="Email Adresa" />
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" name="paymentPhone" placeholder="Numri Telefonik" />
+                            </div>
+                            <div class="mb-2">
+                                <input type="text" class="form-control" name="paymentAmount" placeholder="Shuma për pagesë" />
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="acceptPolicy" />
+                                <label class="form-check-label" for="acceptPolicy">
+                                    Pajtohem me <a href="/PrivacyPolicy/Index?language=sq" target="_blank">Kushtet dhe Termet e Përgjithshme</a>
+                                </label>
+                            </div>
+                            <div class="d-grid mt-2">
+                                <button type="button" class="btn btn-primary" id="payNowBtn">Paguaj</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Login form validation and submission
+        $("#login-form").validate({
+            rules: {
+                email: { required: true, email: true },
+                password: { required: true }
+            },
+            messages: {
+                email: '<li class="parsley-required">Te plotesohet email-i</li>',
+                password: '<li class="parsley-required">Te plotesohet fjalëkalimi</li>'
+            },
+            submitHandler: function (form) {
+                const data = $(form).serialize();
+
+                // Clear any previous visual errors
+                $("[name='email']").removeClass("is-invalid");
+                $("[name='password']").removeClass("is-invalid");
+
+                Post(data, '/Auth/Login').done(function (res) {
+                    if (res.success) {
+                        location.href = "Home/Index"
+                    } else {
+                        showAlert(res.message, 'message', 'danger');
+
+                        // Visual feedback per backend message
+                        if (res.message.toLowerCase().includes("email")) {
+                            $("[name='email']").addClass("is-invalid");
+                        } else if (res.message.toLowerCase().includes("fjalëkalimi")) {
+                            $("[name='password']").addClass("is-invalid");
+                        }
+                    }
+                });
+
+                return false;
+            }
+        });
+
+        // Register form validation and submission
+        $("#register-form").validate({
+            rules: {
+                firstName: { required: true },
+                lastName: { required: true },
+                personalNumber: { required: true },
+                phoneNumber: { required: true },
+                registerEmail: { required: true, email: true },
+                registerPassword: { required: true, minlength: 6 },
+                confirmPassword: {
+                    required: true,
+                    equalTo: "[name='registerPassword']"
+                }
+            },
+            messages: {
+                firstName: '<li class="parsley-required">Emri është i detyrueshëm</li>',
+                lastName: '<li class="parsley-required">Mbiemri është i detyrueshëm</li>',
+                personalNumber: '<li class="parsley-required">Numri personal është i detyrueshëm</li>',
+                phoneNumber: '<li class="parsley-required">Numri telefonik është i detyrueshëm</li>',
+                registerEmail: '<li class="parsley-required">Email-i është i detyrueshëm</li>',
+                registerPassword: '<li class="parsley-required">Fjalëkalimi është i detyrueshëm</li>',
+                confirmPassword: '<li class="parsley-required">Fjalëkalimi duhet të përputhet</li>'
+            },
+            submitHandler: function (form) {
+                const raw = $(form).serializeArray();
+                const data = {
+                    firstName: raw.find(x => x.name === "firstName").value,
+                    lastName: raw.find(x => x.name === "lastName").value,
+                    personalNumber: raw.find(x => x.name === "personalNumber").value,
+                    phoneNumber: raw.find(x => x.name === "phoneNumber").value,
+                    email: raw.find(x => x.name === "registerEmail").value,
+                    password: raw.find(x => x.name === "registerPassword").value
+                };
+
+                Post(data, '/Auth/Register').done(function (res) {
+                    if (res.success) {
+                        showAlert(res.message, 'message', 'success');
+                    } else {
+                        showAlert(res.message, 'message', 'danger');
+                        if (res.message.toLowerCase().includes("email")) {
+                            $("[name='registerEmail']").addClass("is-invalid");
+                        } else if (res.message.toLowerCase().includes("numër personal")) {
+                            $("[name='personalNumber']").addClass("is-invalid");
+                        }
+                    }
+                });
+
+                return false;
+            }
+        });
+
+        // Direct Payment form
+        $("#pay-form").validate({
+            rules: {
+                customerCode: { required: true }
+            },
+            messages: {
+                customerCode: '<li class="parsley-required">Shifra e konsumatorit është e detyrueshme</li>'
+            },
+            submitHandler: function (form) {
+                const code = $("[name='customerCode']").val();
+                Post({}, `/Public/GetCustomerBill?CustomerCode=${code}`).done(function (res) {
+                    if (res.success) {
+                        const d = res.data;
+                        $("#payment-info").show();
+                        $("#customerName").text(d.customerName || "-");
+                        $("#lastBillAmount").text(d.lastBillAmount?.toFixed(2) || "0.00");
+                        $("#lastBillDate").text(d.lastBillDate || "-");
+                        $("#lastPaymentAmount").text(d.lastPaymentAmount?.toFixed(2) || "0.00");
+                        $("#lastPaymentDate").text(d.lastPaymentDate || "-");
+                        $("#totalDebt").text(d.totalDebt?.toFixed(2) || "0.00");
+                        $("[name='paymentAmount']").val(d.totalDebt?.toFixed(2) || "0.00");
+                    } else {
+                        showAlert(res.message || "Nuk u gjet asnjë konsumator me këtë kod.", 'message', 'danger');
+                        $("#payment-info").hide();
+                    }
+                });
+
+                return false;
+            }
+        });
+    });
+    $("#payNowBtn").click(function () {
+        const emailValid = /^[^\s@@]+@@[^\s@@]+\.[^\s@@]+$/.test($("[name='paymentEmail']").val().trim());
+        const phoneValid = $("[name='paymentPhone']").val().trim() !== "";
+        const amountValid = $("[name='paymentAmount']").val().trim() !== "";
+        const policyAccepted = $("#acceptPolicy").is(":checked");
+
+        let valid = true;
+
+        if (!emailValid) {
+            $("[name='paymentEmail']").addClass("is-invalid");
+            valid = false;
+        } else {
+            $("[name='paymentEmail']").removeClass("is-invalid");
+        }
+
+        if (!phoneValid) {
+            $("[name='paymentPhone']").addClass("is-invalid");
+            valid = false;
+        } else {
+            $("[name='paymentPhone']").removeClass("is-invalid");
+        }
+
+        if (!amountValid) {
+            $("[name='paymentAmount']").addClass("is-invalid");
+            valid = false;
+        } else {
+            $("[name='paymentAmount']").removeClass("is-invalid");
+        }
+
+        if (!policyAccepted) {
+            $("#acceptPolicy").addClass("is-invalid");
+            $("#policyError").removeClass("d-none");
+            valid = false;
+        } else {
+            $("#acceptPolicy").removeClass("is-invalid");
+            $("#policyError").addClass("d-none");
+        }
+
+        if (!valid) {
+            showAlert("Ju lutem plotësoni të gjitha fushat për pagesë me të dhëna të sakta dhe pranoni kushtet.", "message", "danger");
+            return;
+        }
+
+        const data = {
+            customerCode: $("[name='customerCode']").val(),
+            email: $("[name='paymentEmail']").val(),
+            phone: $("[name='paymentPhone']").val(),
+            amount: $("[name='paymentAmount']").val()
+        };
+
+        Post(data, '/Public/SubmitPayment').done(function (res) {
+            if (res.success && res.url) {
+                window.location.href = res.url;
+            } else {
+                showAlert(res.message || "Pagesa dështoi.", 'message', 'danger');
+            }
+        });
+    });
+</script>
+

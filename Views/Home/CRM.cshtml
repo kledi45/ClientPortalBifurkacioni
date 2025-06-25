@@ -1,0 +1,960 @@
+﻿@{
+    ViewData["Title"] = "Regjistrimi i kërkesë/ankesës";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+    var fullName = User.FindFirst(System.Security.Claims.ClaimTypes.Name)?.Value;
+    var email = User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value;
+    var phone = User.FindFirst(System.Security.Claims.ClaimTypes.MobilePhone)?.Value;
+}
+<div class="container pt-4">
+    <form id="cmr-form">
+        <div class="bg-light shadow-md rounded p-4">
+            <h2>Regjistro kërkesë/ankesë</h2>
+            <div class="row mt-4">
+                <div class="col-md-4 mb-3">
+                    <label for="dropdown1">Lloji</label>
+                    <select id="dropdown1" name="dropdown1" class="form-select">
+                        <option value="">Zgjedh llojin</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="dropdown2">Nën lloji</label>
+                    <select id="dropdown2" name="dropdown2" class="form-select" disabled>
+                        <option value="">Zgjedh nën llojin</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="dropdown3">Lloji i rastit</label>
+                    <select id="dropdown3" name="dropdown3" class="form-select" disabled>
+                        <option value="">Zgjedh llojin e rastit</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label>Emri i konsumatorit</label>
+                    <input type="text" class="form-control" readonly value="@($"{fullName}")" />
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="phoneNumber">Nr. i telefonit</label>
+                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="@phone" @(string.IsNullOrEmpty(phone) ? "" : "readonly") />
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="propertyCode">Kodi i pronës</label>
+                    <input type="text" class="form-control" id="propertyCode" name="propertyCode" />
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label for="description">Përshkrimi</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="text-end mt-3">
+                <button type="submit" class="btn btn-primary">Ruaj</button>
+                <button type="button" class="btn btn-secondary" onclick="cancel()">Anulo</button>
+            </div>
+        </div>
+    </form>
+
+    <div id="message" class="mt-4"></div>
+    <div id="grid" class="mt-4"></div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.21.0/jquery.validate.min.js"></script>
+    <script>
+        const caseData = [
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 1,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 2,
+                "CaseSubtypeTitle": "T_U_Mos-furnizim me ujë ",
+                "SubTypeTitle": "Ankesa Teknike",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 7,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 2,
+                "CaseSubtypeTitle": "T_U_Cilësi e dobët e ujit",
+                "SubTypeTitle": "Ankesa Teknike",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 10,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 2,
+                "CaseSubtypeTitle": "T_U&UN_Dëmet e shkaktuara nga ndërtimet/riparimet e Ofruesit  ",
+                "SubTypeTitle": "Ankesa Teknike",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 42,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 2,
+                "CaseSubtypeTitle": "T_U_Jo-vazhdimësi me ujë nga presioni i ulët ",
+                "SubTypeTitle": "Ankesa Teknike",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 43,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 2,
+                "CaseSubtypeTitle": "T_U_Dëmet e shkaktuara nga plasaritja e gypave të ujit",
+                "SubTypeTitle": "Ankesa Teknike",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 44,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 2,
+                "CaseSubtypeTitle": "T_UN_Dëmet e shkaktuara nga bllokimet e kanalizimit ",
+                "SubTypeTitle": "Ankesa Teknike",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 45,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 2,
+                "CaseSubtypeTitle": "T_U&UN_Ndotje ambientale e shkaktuar nga Ofruesi (zhurmat; mbeturinat; llumi)  ",
+                "SubTypeTitle": "Ankesa Teknike",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 13,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 3,
+                "CaseSubtypeTitle": "K_U&UN_Lexim jo i rregullt i ujëmatësit",
+                "SubTypeTitle": "Ankesa Komerciale",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 14,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 3,
+                "CaseSubtypeTitle": "K_UN_Mbi-ngarkim në faturë (kontestim)",
+                "SubTypeTitle": "Ankesa Komerciale",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 15,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 3,
+                "CaseSubtypeTitle": "K_U_Mbi-ngarkim në faturë (kontestim)",
+                "SubTypeTitle": "Ankesa Komerciale",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 21,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 3,
+                "CaseSubtypeTitle": "K_U&UN_Sigurim i shënimeve të pa-sakta ",
+                "SubTypeTitle": "Ankesa Komerciale",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 23,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 3,
+                "CaseSubtypeTitle": "K_U&UN_Mos regjistrim i pagesave të kryera",
+                "SubTypeTitle": "Ankesa Komerciale",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 25,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 3,
+                "CaseSubtypeTitle": "K_U&UN_Mos pranim i faturave me rregull",
+                "SubTypeTitle": "Ankesa Komerciale",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 39,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 3,
+                "CaseSubtypeTitle": "K_U&UN_Strukturë dhe çmim jo i duhur i tarifave ",
+                "SubTypeTitle": "Ankesa Komerciale",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 40,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 3,
+                "CaseSubtypeTitle": "K_U&UN_Mos reagim, nga Ofruesi, brenda afatit kohor ",
+                "SubTypeTitle": "Ankesa Komerciale",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 1,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 41,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 3,
+                "CaseSubtypeTitle": "K_U&UN_Sjellje jo korrekte nga stafi i Ofruesit",
+                "SubTypeTitle": "Ankesa Komerciale",
+                "TypeTitle": "Ankesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 3,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_U&UN_Marrje e pëlqimit për qasje në shërbime",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 6,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_U&UN_Marrje e kushteve teknike për shërbime",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 8,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_U&UN_Zgjidhje teknike ",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 9,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_UN_Debllokim i kanlizimit",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 18,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_U&UN_Realizim i lidhjes së re në shërbime",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 19,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_U&UN_Zhvendosje të Ujëmatësit",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 20,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_U&UN_Rilidhje në shërbime ",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 26,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_UN_Pastrim i gropës septike",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 28,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_U&UN_Ndërprerje e lidhjes",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 48,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_U&UN_Verifikim",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 50,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_U_Plombim/Ri plombim",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 56,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_U_Furnizim të ujit me shumicë",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 58,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_U&K_Pëlqime tjera",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 60,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 4,
+                "CaseSubtypeTitle": "T_U&UN_Zhvendosje të Lidhjes dhe UM",
+                "SubTypeTitle": "Kerkesa Teknike",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 4,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 5,
+                "CaseSubtypeTitle": "K_U&UN_Përdatësim i të dhënave",
+                "SubTypeTitle": "Kerkesa Komerciale",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 5,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 5,
+                "CaseSubtypeTitle": "K_U&UN_Ndërrim i ujëmatësit ",
+                "SubTypeTitle": "Kerkesa Komerciale",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 17,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 5,
+                "CaseSubtypeTitle": "K_U&UN_Matje e saktësisë së ujëmatësit ",
+                "SubTypeTitle": "Kerkesa Komerciale",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 22,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 5,
+                "CaseSubtypeTitle": "K_U&UN_Legalizim",
+                "SubTypeTitle": "Kerkesa Komerciale",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 24,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 5,
+                "CaseSubtypeTitle": "K_U&UN_Qasje në dokumente/Vërtetim",
+                "SubTypeTitle": "Kerkesa Komerciale",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 27,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 5,
+                "CaseSubtypeTitle": "K_U&UN_Pasivizim ",
+                "SubTypeTitle": "Kerkesa Komerciale",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 2,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 29,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 5,
+                "CaseSubtypeTitle": "K_U&UN_Transferim i Borxhit / Pagesave",
+                "SubTypeTitle": "Kerkesa Komerciale",
+                "TypeTitle": "Kerkesa"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 11,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 6,
+                "CaseSubtypeTitle": "T_U_Rrjedhje/plasaritje e gypit të ujit ",
+                "SubTypeTitle": "Lajmerimi Ujesjelles",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 38,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 6,
+                "CaseSubtypeTitle": "T_U&UN_Dëmtim i aseteve të Ofruesit ",
+                "SubTypeTitle": "Lajmerimi Ujesjelles",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 12,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 7,
+                "CaseSubtypeTitle": "T_UN_Vëshimet në kanalizim ",
+                "SubTypeTitle": "Lajmerimi Kanalizim",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 35,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 7,
+                "CaseSubtypeTitle": "T_UN_Kolapset në kanalizim",
+                "SubTypeTitle": "Lajmerimi Kanalizim",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 36,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 8,
+                "CaseSubtypeTitle": "T_U&UN_Keqpërdorim i ujit nga konsumatorët ekzistues",
+                "SubTypeTitle": "Lajmerimi Keqperdorim",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 37,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 8,
+                "CaseSubtypeTitle": "T_U&UN_Keqpërdorim i ujit nga konsumuesit e pa-autorizuar",
+                "SubTypeTitle": "Lajmerimi Keqperdorim",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 51,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 14,
+                "CaseSubtypeTitle": "DSH_Inkasantet nderrim te UM",
+                "SubTypeTitle": "DSH",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 52,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 14,
+                "CaseSubtypeTitle": "DSH_Inkasantet-Pengim Ne lexim",
+                "SubTypeTitle": "DSH",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 53,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 14,
+                "CaseSubtypeTitle": "DSH_Inkasantet-Verifikim i Kons.",
+                "SubTypeTitle": "DSH",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 54,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 14,
+                "CaseSubtypeTitle": "DSH_Inkasantet_Konsumator i RI",
+                "SubTypeTitle": "DSH",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 55,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 14,
+                "CaseSubtypeTitle": "DSH_Inkasantet _Mos pranim i fatures",
+                "SubTypeTitle": "DSH",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 57,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 14,
+                "CaseSubtypeTitle": "DSH_Rrjejdhje_Valvulat",
+                "SubTypeTitle": "DSH",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 61,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 14,
+                "CaseSubtypeTitle": "DSH_Vendosje te UM",
+                "SubTypeTitle": "DSH",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 82,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 14,
+                "CaseSubtypeTitle": "DSH_Inkasantet_Mbingarkim",
+                "SubTypeTitle": "DSH",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 1082,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 14,
+                "CaseSubtypeTitle": "DSH_Plombim",
+                "SubTypeTitle": "DSH",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 1083,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 14,
+                "CaseSubtypeTitle": "DSH_Kycje Ilegale",
+                "SubTypeTitle": "DSH",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 3,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 59,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 15,
+                "CaseSubtypeTitle": "DO_Shkyqje",
+                "SubTypeTitle": "DO",
+                "TypeTitle": "Lajmerime"
+            },
+            {
+                "TypeId": 5,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 32,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 9,
+                "CaseSubtypeTitle": "Aprovim",
+                "SubTypeTitle": "Aprovim",
+                "TypeTitle": "ARRU"
+            },
+            {
+                "TypeId": 5,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 33,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 10,
+                "CaseSubtypeTitle": "Refuzim",
+                "SubTypeTitle": "Refuzim",
+                "TypeTitle": "ARRU"
+            },
+            {
+                "TypeId": 5,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 34,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 11,
+                "CaseSubtypeTitle": "Rishqyrtim",
+                "SubTypeTitle": "Rishqyrtim",
+                "TypeTitle": "ARRU"
+            },
+            {
+                "TypeId": 6,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 46,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 12,
+                "CaseSubtypeTitle": "K_U&UN_Sjellje e mirë e stafit ",
+                "SubTypeTitle": "Komerciale",
+                "TypeTitle": "Komplimente"
+            },
+            {
+                "TypeId": 6,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 47,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 13,
+                "CaseSubtypeTitle": "T_U&UN_Shërbime cilësore ",
+                "SubTypeTitle": "Teknike",
+                "TypeTitle": "Komplimente"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 62,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 16,
+                "CaseSubtypeTitle": "Kimike_Pozitive",
+                "SubTypeTitle": "Ferizaj-BIO1",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 63,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 16,
+                "CaseSubtypeTitle": "Kimike_Negative",
+                "SubTypeTitle": "Ferizaj-BIO1",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 72,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 16,
+                "CaseSubtypeTitle": "Baktero_Pozitive",
+                "SubTypeTitle": "Ferizaj-BIO1",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 73,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 16,
+                "CaseSubtypeTitle": "Baktero-Negative",
+                "SubTypeTitle": "Ferizaj-BIO1",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 64,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 17,
+                "CaseSubtypeTitle": "Kimike_Pozitiv",
+                "SubTypeTitle": "Ferizaj-ZR-BIO2",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 67,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 17,
+                "CaseSubtypeTitle": "Kimike-Negative",
+                "SubTypeTitle": "Ferizaj-ZR-BIO2",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 74,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 17,
+                "CaseSubtypeTitle": "Baktero_Pozitive",
+                "SubTypeTitle": "Ferizaj-ZR-BIO2",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 75,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 17,
+                "CaseSubtypeTitle": "Baktero-Negative",
+                "SubTypeTitle": "Ferizaj-ZR-BIO2",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 65,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 18,
+                "CaseSubtypeTitle": "Kimike-Pozitiv",
+                "SubTypeTitle": "Kaçanik-BIO3",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 68,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 18,
+                "CaseSubtypeTitle": "Kimike_Negativ",
+                "SubTypeTitle": "Kaçanik-BIO3",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 76,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 18,
+                "CaseSubtypeTitle": "Baktero-Pozitive",
+                "SubTypeTitle": "Kaçanik-BIO3",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 77,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 18,
+                "CaseSubtypeTitle": "Baktero-Negative",
+                "SubTypeTitle": "Kaçanik-BIO3",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 66,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 19,
+                "CaseSubtypeTitle": "Kimike-Pozitiv",
+                "SubTypeTitle": "Kaçanik-ZR-BIO4",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 69,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 19,
+                "CaseSubtypeTitle": "Kimike-Negativ",
+                "SubTypeTitle": "Kaçanik-ZR-BIO4",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 78,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 19,
+                "CaseSubtypeTitle": "Baktero-Pozitive",
+                "SubTypeTitle": "Kaçanik-ZR-BIO4",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 79,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 19,
+                "CaseSubtypeTitle": "Baktero-Negative",
+                "SubTypeTitle": "Kaçanik-ZR-BIO4",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 70,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 20,
+                "CaseSubtypeTitle": "Kimike-Pozitive",
+                "SubTypeTitle": "Hani i Elezit-BIO5",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 71,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 20,
+                "CaseSubtypeTitle": "Kimike-Negative",
+                "SubTypeTitle": "Hani i Elezit-BIO5",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 80,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 20,
+                "CaseSubtypeTitle": "Baktero-Pozitive",
+                "SubTypeTitle": "Hani i Elezit-BIO5",
+                "TypeTitle": "Analizat"
+            },
+            {
+                "TypeId": 7,
+                "CaseSubtypeTimestamp": null,
+                "CaseSubtypeId": 81,
+                "SubTypeTimestamp": null,
+                "SubTypeId": 20,
+                "CaseSubtypeTitle": "Baktero-Negative",
+                "SubTypeTitle": "Hani i Elezit-BIO5",
+                "TypeTitle": "Analizat"
+            }
+        ];
+
+        const grouped = {
+            types: [],
+            subtypes: {},
+            cases: {}
+        };
+
+        function groupData() {
+            caseData.forEach(item => {
+                if (!grouped.types.find(t => t.TypeId === item.TypeId)) {
+                    grouped.types.push({ TypeId: item.TypeId, TypeTitle: item.TypeTitle });
+                }
+
+                if (!grouped.subtypes[item.TypeId]) grouped.subtypes[item.TypeId] = [];
+                if (!grouped.subtypes[item.TypeId].some(x => x.SubTypeId === item.SubTypeId)) {
+                    grouped.subtypes[item.TypeId].push({ SubTypeId: item.SubTypeId, SubTypeTitle: item.SubTypeTitle });
+                }
+
+                if (!grouped.cases[item.SubTypeId]) grouped.cases[item.SubTypeId] = [];
+                if (!grouped.cases[item.SubTypeId].some(x => x.CaseSubtypeId === item.CaseSubtypeId)) {
+                    grouped.cases[item.SubTypeId].push({ CaseSubtypeId: item.CaseSubtypeId, CaseSubtypeTitle: item.CaseSubtypeTitle });
+                }
+            });
+        }
+
+        function populateSelect(selectId, items, valueKey, textKey) {
+            const select = $(`#${selectId}`);
+            select.empty().append(`<option value="">Zgjedh</option>`);
+            items.forEach(item => {
+                select.append(`<option value="${item[valueKey]}">${item[textKey]}</option>`);
+            });
+            select.prop("disabled", items.length === 0);
+        }
+
+        $(document).ready(function () {
+            $.getJSON('/CaseManagement/GetCaseDropdownData', function (data) {
+                caseData.push(...data);
+                groupData();
+                populateSelect("dropdown1", grouped.types, "TypeId", "TypeTitle");
+            });
+
+            $("#dropdown1").on("change", function () {
+                const typeId = $(this).val();
+                populateSelect("dropdown2", grouped.subtypes[typeId] || [], "SubTypeId", "SubTypeTitle");
+                $("#dropdown3").empty().append(`<option value="">Zgjedh</option>`).prop("disabled", true);
+            });
+
+            $("#dropdown2").on("change", function () {
+                const subTypeId = $(this).val();
+                populateSelect("dropdown3", grouped.cases[subTypeId] || [], "CaseSubtypeId", "CaseSubtypeTitle");
+            });
+
+            $("#cmr-form").validate({
+                rules: {
+                    dropdown1: { required: true },
+                    dropdown2: { required: true },
+                    dropdown3: { required: true },
+                    phoneNumber: { required: true },
+                    propertyCode: { required: true },
+                    description: { required: true }
+                },
+                submitHandler: function (form) {
+                    const data = {
+                        IDDropDown1: $("#dropdown1").val(),
+                        IDDropDown2: $("#dropdown2").val(),
+                        IDDropDown3: $("#dropdown3").val(),
+                        PhoneNumber: $("#phoneNumber").val(),
+                        Description: $("#description").val(),
+                        PropertyCode: $("#propertyCode").val()
+                    };
+
+                    Post(data, "/CaseManagement/CreateCMR").done(function (res) {
+                        if (res.Result) {
+                            showAlert("Të dhënat janë ruajtur me sukses!", "message", "success");
+                            loadGrid();
+                        } else {
+                            showAlert("Një gabim ka ndodhur gjatë ruajtjes së të dhënave!", "message", "danger");
+                        }
+                    });
+
+                    return false;
+                }
+            });
+
+            loadGrid();
+        });
+
+        function cancel() {
+            document.getElementById("cmr-form").reset();
+            $("#dropdown2, #dropdown3").prop("disabled", true);
+        }
+
+        function loadGrid() {
+            $("#grid").load("/CaseManagement/GetCMRList");
+        }
+
+        function showAlert(message, elementId, type) {
+            const alertHtml = `<div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>`;
+            $(`#${elementId}`).html(alertHtml);
+            $('html, body').animate({ scrollTop: $(`#${elementId}`).offset().top - 80 }, 500);
+        }
+    </script>
+}

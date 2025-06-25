@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - e-Bifurkacioni</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ClientPortalBifurkacioni.styles.css" asp-append-version="true" />
+    <script src="~/js/jquery-3.2.1.min.js"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <div id="overlay">
+        <div class="loader-container">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Duke ngarkuar...</span>
+            </div>
+            <div class="loader-text">Duke u ngarkuar...</div>
+        </div>
+    </div>
+    <header style="background-color: #3C8CCB;" class="py-3">
+        <div class="container d-flex align-items-center justify-content-between">
+            <img src="~/images/logo.png" alt="Bifurkacioni Logo" style="height: 50px;" class="img-fluid" />
+        </div>
+    </header>
+
+    <main class="flex-fill">
+        <div class="container py-4">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="bg-light text-center text-muted py-3 mt-auto">
+        <div class="container">
+            &copy; 2025 Integrated Water Billing - <strong>Bifurkacioni</strong>
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+    <script src="~/js/ajax.js" asp-append-version="true"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/requests.js" asp-append-version="true"></script>
+    <script src="~/js/app.js" asp-append-version="true"></script>
+
+    <script src="~/js/jquery-validator.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
