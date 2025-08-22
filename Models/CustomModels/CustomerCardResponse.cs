@@ -22,14 +22,14 @@ namespace ClientPortalBifurkacioni.Models.CustomModels
     public class CustomerMeterFlatRow
     {
         public string? SerialNumber { get; set; }        
-        public int CurrentReading { get; set; }          
-        public int PreviousReading { get; set; }         
-        public int LastConsumption { get; set; }         
+        public decimal CurrentReading { get; set; }          
+        public decimal PreviousReading { get; set; }         
+        public decimal LastConsumption { get; set; }         
         public string? LastReadingPeriod { get; set; }   
 
         public string? Period { get; set; }              
-        public int Reading { get; set; }                 
-        public int Consumption { get; set; }             
+        public decimal Reading { get; set; }                 
+        public decimal Consumption { get; set; }             
     }
 
     public class InvoiceFlatRow

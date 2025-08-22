@@ -3,8 +3,8 @@
     public class MeterReading
     {
         public string? Period { get; set; }       
-        public int Reading { get; set; }         
-        public int Consumption { get; set; }     
+        public decimal Reading { get; set; }         
+        public decimal Consumption { get; set; }     
     }
 
 }

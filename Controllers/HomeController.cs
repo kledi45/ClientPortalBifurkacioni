@@ -5,6 +5,7 @@ using ClientPortalBifurkacioni.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System.Diagnostics;
 
 namespace ClientPortalBifurkacioni.Controllers
@@ -13,9 +14,9 @@ namespace ClientPortalBifurkacioni.Controllers
     {
         private readonly PublicUserRepository _repo;
 
-        public HomeController(ApplicationDbContext context)
+        public HomeController(ApplicationDbContext context, IOptions<SmtpSettings> smtpOptions)
         {
-            _repo = new PublicUserRepository(context);
+            _repo = new PublicUserRepository(context,smtpOptions);
         }
 
         public async Task<IActionResult> Index()

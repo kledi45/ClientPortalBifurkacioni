@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ClientPortalBifurkacioni")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+76c3f2f6f50c1f092b7ff100baad751e9e156292")]
 [assembly: System.Reflection.AssemblyProductAttribute("ClientPortalBifurkacioni")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ClientPortalBifurkacioni")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

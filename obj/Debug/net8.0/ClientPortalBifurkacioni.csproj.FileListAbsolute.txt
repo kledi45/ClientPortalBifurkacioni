@@ -83,3 +83,7 @@ C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPort
 C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\bin\Debug\net8.0\JWT.dll
 C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\obj\Debug\net8.0\ClientPortalBifurkacioni.sourcelink.json
+C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\bin\Debug\net8.0\MailKit.dll
+C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\bin\Debug\net8.0\MimeKit.dll

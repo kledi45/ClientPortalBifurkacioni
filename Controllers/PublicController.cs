@@ -69,6 +69,7 @@ namespace ClientPortalBifurkacioni.Controllers
         {
             try
             {
+                
                 string password = await _repo.GetPaymentPassword(id);
                 string email = await _repo.GetPaymentEmail(id);
                 var result = await _paymentHelper.GetOrderDetailsFromQuipu(id, password);
@@ -78,8 +79,16 @@ namespace ClientPortalBifurkacioni.Controllers
                     result.CustomerCode = customerCode;
                     result.Amount = amount;
                     result.PaymentDate = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
-                    _repo.UpdatePublicPayment(id);
-                    string html = GenerateInvoiceHtml(id.ToString(), result.PaymentDate, customerCode, amount);
+                    await _repo.UpdatePublicPayment(id);
+                    string html = GenerateInvoiceHtml(
+                        id.ToString(),
+                        result.PaymentDate,
+                        customerCode,
+                        amount,
+                        result.CardBrand!,
+                        result.LastFourDigits!,
+                        result.ApprovalCode!
+                    );
                     Task.Run(() => SendInvoiceEmail(email, "Faturë - Pagesë", html));
                     return View("~/Views/Payment/SuccessNew.cshtml", result);
                 }
@@ -92,33 +101,41 @@ namespace ClientPortalBifurkacioni.Controllers
             }
         }
 
-        private string GenerateInvoiceHtml(string orderId, string transactionDate, string customerCode, string amount)
+        private string GenerateInvoiceHtml
+        (
+            string orderId, string transactionDate,string customerCode, 
+            string amount,  string cardBrand, string lastFourDigits,string approvalCode
+        )
         {
             return $@"
-                <div style='font-family:Arial; font-size:14px; color:#000;'>
-                    <h4>Pagesa është kryer me sukses!</h4>
-                    <div style='border:1px solid #ccc; padding:15px;'>
-                        <p><strong>Merchant:</strong> Bifurkacioni SHA</p>
-                        <p><strong>Adresa:</strong> Rr.Enver Topalli, Ferizaj ,Kosovë</p>
-                        <p><strong>Website, Email, Telefoni:</strong> www.bifurkacioni.com, info@bifurkacioni.com</p>
-                        <br/>
-                        <table border='1' cellspacing='0' cellpadding='6'>
-                            <tr><th>Order ID</th><td>#{orderId}</td></tr>
-                            <tr><th>Data e Pagesës</th><td>{transactionDate}</td></tr>
-                        </table>
-                        <br/>
-                        <table border='1' cellspacing='0' cellpadding='6'>
-                            <tr><th>Pershkrimi</th><th>Sasia</th><th>Çmimi</th></tr>
-                            <tr><td>Pagesë për faturë për klientin {customerCode}</td><td>1</td><td>{amount}€</td></tr>
-                            <tr><td colspan='2' style='text-align:right;'>Totali:</td><td>{amount}€</td></tr>
-                        </table>
-                        <br/>
-                        <p><strong>Mënyra e Pagesës:</strong> Me kartelë</p>
-                        <ul>
-                            <li><strong>Data e Transaksionit:</strong> {transactionDate}</li>
-                        </ul>
-                    </div>
-                </div>";
+            <div style='font-family:Arial; font-size:14px; color:#000;'>
+            <h4>Pagesa është kryer me sukses!</h4>
+            <div style='border:1px solid #ccc; padding:15px;'>
+                <p><strong>Merchant:</strong> Bifurkacioni SHA</p>
+                <p><strong>Adresa:</strong> Rr.Enver Topalli, Ferizaj ,Kosovë</p>
+                <p><strong>Website, Email, Telefoni:</strong> www.bifurkacioni.com, info@bifurkacioni.com</p>
+                <br/>
+                <table border='1' cellspacing='0' cellpadding='6'>
+                    <tr><th>Order ID</th><td>#{orderId}</td></tr>
+                    <tr><th>Data e Pagesës</th><td>{transactionDate}</td></tr>
+                    <tr><th>Kodi i Konsumatorit</th><td>{customerCode}</td></tr>
+                </table>
+                <br/>
+                <table border='1' cellspacing='0' cellpadding='6'>
+                    <tr><th>Përshkrimi</th><th>Sasia</th><th>Çmimi</th></tr>
+                    <tr><td>Pagesë për faturë për klientin {customerCode}</td><td>1</td><td>{amount}€</td></tr>
+                    <tr><td colspan='2' style='text-align:right;'><strong>Totali:</strong></td><td><strong>{amount}€</strong></td></tr>
+                </table>
+                <br/>
+                <p><strong>Mënyra e Pagesës:</strong> Me kartelë</p>
+                <ul>
+                    <li><strong>Data e Transaksionit:</strong> {transactionDate}</li>
+                    <li><strong>Brandi i Kartelës:</strong> {cardBrand}</li>
+                    <li><strong>4 Shifrat e Fundit:</strong> {lastFourDigits}</li>
+                    <li><strong>Kodi i Aprovimit:</strong> {approvalCode}</li>
+                </ul>
+            </div>
+            </div>";
         }
 
         public async Task SendInvoiceEmail(string toEmail, string subject, string bodyHtml)

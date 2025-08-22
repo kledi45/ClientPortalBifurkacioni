@@ -1,19 +1,15 @@
 ﻿@model ClientPortalBifurkacioni.Models.CustomModels.TransactionResponse
 
-@{
-    // ViewData["Title"] = "Pagesa e suksesshme";
-    // Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
 <div class="container text-center py-5">
     <div class="alert alert-success shadow-sm p-4 rounded">
         <h2 class="text-success mb-3">✅ Pagesa u realizua me sukses!</h2>
         <p class="lead">Faleminderit për pagesën tuaj.</p>
-
         <p><strong>Kodi i konsumatorit:</strong> @Model.CustomerCode</p>
         <p><strong>Shuma:</strong> @Model.Amount €</p>
         <p><strong>Data e pagesës:</strong> @Model.PaymentDate</p>
-     
+        <p><strong>Brandi i kartelës:</strong> @Model.CardBrand</p>
+        <p><strong>4 shifrat e fundit të kartelës:</strong> @Model.LastFourDigits</p>
+        <p><strong>Kodi i aprovimit:</strong> @Model.ApprovalCode</p>
         <a href="/" class="btn btn-outline-success mt-4">Kthehu në faqen kryesore</a>
     </div>
 </div>

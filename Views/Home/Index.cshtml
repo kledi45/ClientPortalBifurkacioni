@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-<!-- Chart.js CDN included directly in the file -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @if (!Model.Customers.Any())
 {
@@ -129,7 +128,7 @@
                                     <strong>Gjendja paraprake:</strong> @meter.PreviousReading m³   
                                     <strong>Konsumimi i fundit:</strong> @meter.LastConsumption m³   
                                     <strong>Leximi i fundit:</strong> @meter.LastReadingPeriod
-                                    <button class="btn btn-sm btn-success float-end">Shkarko</button>
+                                    @* <button class="btn btn-sm btn-success float-end">Shkarko</button> *@
                                 </div>
                                 <table class="table table-bordered">
                                     <thead>
@@ -217,10 +216,34 @@
     </div>
     @section Scripts {
     <script>
-        // Serialize customer data from the model, safely encoded
-        const customers = @Html.Raw(Json.Serialize(Model.Customers));
+        const monthNameToIndex = {
+            "Janar": 0,
+            "Shkurt": 1,
+            "Mars": 2,
+            "Prill": 3,
+            "Maj": 4,
+            "Qershor": 5,
+            "Korrik": 6,
+            "Gusht": 7,
+            "Shtator": 8,
+            "Tetor": 9,
+            "Nëntor": 10,
+            "Dhjetor": 11
+        };
 
-        // Utility function to escape HTML to prevent XSS
+        // Utility: convert month names to correct position
+        function mapExpensesToMonthlyArrayByName(expenses) {
+            const monthly = new Array(12).fill(0);
+            expenses.forEach(e => {
+                const index = monthNameToIndex[e.month?.trim()];
+                if (index !== undefined) {
+                    monthly[index] = e.amount || 0;
+                }
+            });
+            return monthly;
+        }
+        const customers = @Html.Raw(Json.Serialize(Model.Customers));
+        console.log(customers,'ra')
         function escapeHtml(unsafe) {
             return unsafe
                 .replace(/&/g, "&amp;")
@@ -230,7 +253,6 @@
                 .replace(/'/g, "&#039;");
         }
 
-        // Initialize Chart.js instance once
         const ctx = document.getElementById('expenseChart').getContext('2d');
         let expenseChartInstance = new Chart(ctx, {
             type: 'bar',
@@ -278,13 +300,11 @@
             }
         });
 
-        // Update customer data when selector changes
         $("#customerSelector").on("change", function () {
             const index = $(this).val();
             const selected = customers[index];
             if (!selected) return;
-
-            // Update summary fields
+           
             $("#propertyAddress").text(selected.propertyAddress || '');
             $("#totalDebt").text(`${selected.totalDebt || 0} €`);
             $("#lastBillAmount").text(`${selected.lastBillAmount || 0} €`);
@@ -303,7 +323,6 @@
                                 <strong>Gjendja paraprake:</strong> ${escapeHtml((meter.previousReading || 0).toString())} m³ &nbsp;
                                 <strong>Konsumimi i fundit:</strong> ${escapeHtml((meter.lastConsumption || 0).toString())} m³ &nbsp;
                                 <strong>Leximi i fundit:</strong> ${escapeHtml(meter.lastReadingPeriod || '')}
-                                <button class="btn btn-sm btn-success float-end">Shkarko</button>
                             </div>
                             <table class="table table-bordered">
                                 <thead>
@@ -381,12 +400,25 @@
                     `;
             $("#tab-pagesat").html(paymentsHtml);
 
-            // Update expense chart dynamically
-            const expenses2024 = (selected.expenses || []).filter(e => e.year === 2024).map(e => ({ month: e.month, amount: e.amount }));
-            const expenses2025 = (selected.expenses || []).filter(e => e.year === 2025).map(e => ({ month: e.month, amount: e.amount }));
-            expenseChartInstance.data.datasets[0].data = expenses2024.map(e => e.amount);
-            expenseChartInstance.data.datasets[1].data = expenses2025.map(e => e.amount);
+            const allYears = [...new Set((selected.expenses || []).map(e => e.year))].sort((a, b) => a - b);
+            if (allYears.length === 0) return;
+
+            const latestYears = allYears.slice(-2);
+
+            const expensesYear1 = selected.expenses.filter(e => e.year === latestYears[0]);
+            const expensesYear2 = selected.expenses.filter(e => e.year === latestYears[1]);
+
+            expenseChartInstance.data.datasets[0].label = latestYears[0];
+            expenseChartInstance.data.datasets[0].data = mapExpensesToMonthlyArrayByName(expensesYear1);
+
+            expenseChartInstance.data.datasets[1].label = latestYears[1];
+            expenseChartInstance.data.datasets[1].data = mapExpensesToMonthlyArrayByName(expensesYear2);
+
             expenseChartInstance.update();
+
+            console.log("Latest years:", latestYears);
+            console.log("Year 1 Data:", mapExpensesToMonthlyArrayByName(expensesYear1));
+            console.log("Year 2 Data:", mapExpensesToMonthlyArrayByName(expensesYear2));
         });
 
         // Handle Paguaj button click to open modal
@@ -443,6 +475,9 @@
 
         // Trigger change on page load to initialize the first customer's data
         $("#customerSelector").trigger("change");
+
+    
+
     </script>
     }
 

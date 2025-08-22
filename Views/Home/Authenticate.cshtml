@@ -2,7 +2,6 @@
     ViewData["Title"] = "Kyçu";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="container py-5">
     <div id="message" class="mb-3"></div>
 
@@ -12,7 +11,7 @@
                 <h3 class="text-center fw-bold">e-Bifurkacioni</h3>
                 <p class="text-center text-muted">
                     Me e-Bifurkacionin ju mund t’i shihni të gjitha transaksionet e bëra,<br />
-                    faturat e pranuara, bilancin tuaj aktual, kalkulatorin e ujit elektrike dhe<br />
+                    faturat e pranuara, bilancin tuaj aktual, kalkulatorin e ujit dhe<br />
                     të merrni shumë shërbime të tjera të rëndësishme për ju.
                 </p>
                 <div class="d-flex justify-content-center align-items-center gap-2 mt-3 store-badges">
@@ -61,14 +60,55 @@
 
                     <!-- Register -->
                     <div class="tab-pane fade" id="register" role="tabpanel">
+                        <!-- Account Type Modal Trigger -->
+                        <div class="text-center mb-3">
+                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#accountTypeModal">
+                                Zgjidhni llojin e llogarisë
+                            </button>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="accountTypeModal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content text-center p-4">
+                                    <h5 class="mb-3">Ju lutem zgjidhni llojin e llogarisë</h5>
+                                    <div class="d-grid gap-2">
+                                        <button type="button" class="btn btn-outline-primary" onclick="selectAccountType('individual')">Individuale</button>
+                                        <button type="button" class="btn btn-primary" onclick="selectAccountType('business')">Biznesore</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Register Form -->
                         <form id="register-form">
-                            <div class="mb-2"><input type="text" class="form-control" name="firstName" placeholder="Emri" /></div>
-                            <div class="mb-2"><input type="text" class="form-control" name="lastName" placeholder="Mbiemri" /></div>
-                            <div class="mb-2"><input type="text" class="form-control" name="personalNumber" placeholder="Numri Personal" /></div>
-                            <div class="mb-2"><input type="text" class="form-control" name="phoneNumber" placeholder="Numri Telefonik" /></div>
-                            <div class="mb-2"><input type="email" class="form-control" name="registerEmail" placeholder="Email Adresa" /></div>
-                            <div class="mb-2"><input type="password" class="form-control" name="registerPassword" placeholder="Fjalëkalimi" /></div>
-                            <div class="mb-3"><input type="password" class="form-control" name="confirmPassword" placeholder="Konfirmo Fjalëkalimin" /></div>
+                            <input type="hidden" name="accountType" id="accountType" value="" />
+
+                            <div id="individual-form" style="display:none;">
+                                <div class="mb-2"><input type="text" class="form-control" name="firstName" placeholder="Emri*" /></div>
+                                <div class="mb-2"><input type="text" class="form-control" name="lastName" placeholder="Mbiemri*" /></div>
+                                <div class="mb-2"><input type="text" class="form-control" name="phoneNumber" placeholder="Numri i telefonit*" value="+383" /></div>
+                                <div class="mb-2"><input type="email" class="form-control" name="registerEmail" placeholder="E-Mail*" /></div>
+                                <div class="mb-2"><input type="password" class="form-control" name="registerPassword" placeholder="Vendos fjalëkalimin*" /></div>
+                                <div class="mb-2"><input type="password" class="form-control" name="confirmPassword" placeholder="Përsërit fjalëkalimin*" /></div>
+                                <div class="mb-3"><input type="text" class="form-control" name="personalNumber" placeholder="Numri personal*" /></div>
+                            </div>
+
+                            <div id="business-form" style="display:none;">
+                                <div class="mb-2"><input type="text" class="form-control" name="businessName" placeholder="Emri i biznesit*" /></div>
+                                <div class="mb-2"><input type="text" class="form-control" name="phoneNumber" placeholder="Numri i telefonit*" value="+383" /></div>
+                                <div class="mb-2"><input type="email" class="form-control" name="businessRegisterEmail" placeholder="E-Mail*" /></div>
+                                <div class="mb-2"><input type="password" class="form-control" name="businessRegisterPassword" placeholder="Vendos fjalëkalimin*" /></div>
+                                <div class="mb-2"><input type="password" class="form-control" name="businessConfirmPassword" placeholder="Përsërit fjalëkalimin*" /></div>
+                                <div class="mb-2"><input type="text" class="form-control" name="businessPersonalNumber" placeholder="Numri personal*" /></div>
+                                <div class="mb-3"><input type="text" class="form-control" name="nui" placeholder="Numri unik identifikues (NUI)*" /></div>
+                            </div>
+
+                            <div class="text-center small mb-3">
+                                Duke vazhduar, ju gjithashtu pajtoheni me
+                                <a href="/PrivacyPolicy/Index?language=sq" target="_blank">Kushtet e shërbimit dhe Politikën e privatësisë</a>
+                            </div>
+
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary">Regjistrohu</button>
                             </div>
@@ -93,7 +133,7 @@
                                 <input type="text" class="form-control" name="customerCode" placeholder="Shifra e konsumatorit" />
                             </div>
                             <div class="d-grid">
-                                <button class="btn btn-primary">Kërko konsumatorin</button>
+                                <button type="submit" class="btn btn-primary">Kërko konsumatorin</button>
                             </div>
                         </form>
                         <div id="payment-info" style="display:none;">
@@ -124,13 +164,144 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Verification Modal -->
+<div class="modal fade" id="verifyModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center p-4">
+      <h5 class="mb-3">Verifikoni llogarinë tuaj</h5>
+      <p>Ju lutem vendosni kodin 6-shifror që ju është dërguar.</p>
+      <div id="timer" class="mb-2 text-danger fw-bold"></div>
+      <input type="text" id="verificationCode" maxlength="6" class="form-control mb-2" placeholder="Kodi 6-shifror" autocomplete="one-time-code" />
+      <div id="verifyError" class="text-danger mb-2" style="display:none;"></div>
+      <button id="verifyBtn" class="btn btn-primary w-100 mb-2">Verifiko</button>
+    </div>
+  </div>
+</div>
+
 <script>
+    function setupRegisterValidation(accountType) {
+        // Remove any previous validator
+        if ("#register-form" && $("#register-form").data('validator')) {
+            $("#register-form").validate().destroy();
+        }
+
+        let rules = {}, messages = {};
+
+        if (accountType === "individual") {
+            rules = {
+                accountType: { required: true },
+                firstName: { required: true },
+                lastName: { required: true },
+                phoneNumber: { required: true },
+                registerEmail: { required: true, email: true },
+                registerPassword: { required: true, minlength: 6 },
+                confirmPassword: { required: true, equalTo: "[name='registerPassword']" },
+                personalNumber: { required: true }
+            };
+            messages = {
+                accountType: '<li class="parsley-required">Zgjedhja e llogarisë është e detyrueshme</li>',
+                firstName: '<li class="parsley-required">Emri është i detyrueshëm</li>',
+                lastName: '<li class="parsley-required">Mbiemri është i detyrueshëm</li>',
+                phoneNumber: '<li class="parsley-required">Numri i telefonit është i detyrueshëm</li>',
+                registerEmail: '<li class="parsley-required">Email-i është i detyrueshëm</li>',
+                registerPassword: '<li class="parsley-required">Fjalëkalimi është i detyrueshëm (min 6 karaktere)</li>',
+                confirmPassword: '<li class="parsley-required">Fjalëkalimi nuk përputhet</li>',
+                personalNumber: '<li class="parsley-required">Numri personal është i detyrueshëm</li>'
+            };
+        } else if (accountType === "business") {
+            rules = {
+                accountType: { required: true },
+                businessName: { required: true },
+                phoneNumber: { required: true },
+                businessRegisterEmail: { required: true, email: true },
+                businessRegisterPassword: { required: true, minlength: 6 },
+                businessConfirmPassword: { required: true, equalTo: "[name='businessRegisterPassword']" },
+                businessPersonalNumber: { required: true },
+                nui: { required: true }
+            };
+            messages = {
+                accountType: '<li class="parsley-required">Zgjedhja e llogarisë është e detyrueshme</li>',
+                businessName: '<li class="parsley-required">Emri i biznesit është i detyrueshëm</li>',
+                phoneNumber: '<li class="parsley-required">Numri i telefonit është i detyrueshëm</li>',
+                businessRegisterEmail: '<li class="parsley-required">Email-i është i detyrueshëm</li>',
+                businessRegisterPassword: '<li class="parsley-required">Fjalëkalimi është i detyrueshëm (min 6 karaktere)</li>',
+                businessConfirmPassword: '<li class="parsley-required">Fjalëkalimi nuk përputhet</li>',
+                businessPersonalNumber: '<li class="parsley-required">Numri personal është i detyrueshëm</li>',
+                nui: '<li class="parsley-required">NUI është i detyrueshëm</li>'
+            };
+        }
+
+        $("#register-form").validate({
+            ignore: [],
+            rules: rules,
+            messages: messages,
+            submitHandler: function (form) {
+                const accountType = $("#accountType").val();
+                let registerData = { AccountType: accountType };
+
+                if (accountType === "individual") {
+                    registerData.FirstName = $("input[name='firstName']").val();
+                    registerData.LastName = $("input[name='lastName']").val();
+                    registerData.PhoneNumber = $("input[name='phoneNumber']").val();
+                    registerData.Email = $("input[name='registerEmail']").val();
+                    registerData.Password = $("input[name='registerPassword']").val();
+                    registerData.ConfirmPassword = $("input[name='confirmPassword']").val();
+                    registerData.PersonalNumber = $("input[name='personalNumber']").val();
+                } else if (accountType === "business") {
+                    registerData.BusinessName = $("input[name='businessName']").val();
+                    registerData.PhoneNumber = $("input[name='phoneNumber']").val();
+                    registerData.Email = $("input[name='businessRegisterEmail']").val();
+                    registerData.Password = $("input[name='businessRegisterPassword']").val();
+                    registerData.ConfirmPassword = $("input[name='businessConfirmPassword']").val();
+                    registerData.PersonalNumber = $("input[name='businessPersonalNumber']").val();
+                    registerData.NUI = $("input[name='nui']").val();
+                }
+
+                Post(registerData, '/Auth/Register').done(function (res) {
+                    if (res.success) {
+                        verificationUserId = res.userId; // Store the returned userId for now
+                        $('#verifyModal').modal({ backdrop: 'static', keyboard: false });
+                        startVerificationTimer(5 * 60); // 5 minutes
+                    } else {
+                        showAlert(res.message, 'message', 'danger');
+                    }
+                });
+
+                return false;
+            }
+        });
+    }
+
+    let verificationUserId = null;
+    let verificationInterval = null;
+    function startVerificationTimer(seconds) {
+        clearInterval(verificationInterval);
+        let remaining = seconds;
+        updateTimerDisplay(remaining);
+        $('#verifyBtn').prop('disabled', false);
+        verificationInterval = setInterval(function() {
+            remaining--;
+            updateTimerDisplay(remaining);
+            if (remaining <= 0) {
+                clearInterval(verificationInterval);
+                $('#verifyBtn').prop('disabled', true);
+                $('#timer').text('Koha për verifikim ka skaduar.');
+            }
+        }, 1000);
+    }
+    function updateTimerDisplay(seconds) {
+        const min = Math.floor(seconds / 60);
+        const sec = seconds % 60;
+        $('#timer').text(`Koha e mbetur: ${min}:${sec.toString().padStart(2, '0')}`);
+    }
+
     $(document).ready(function () {
         // Login form validation and submission
         $("#login-form").validate({
@@ -168,56 +339,8 @@
             }
         });
 
-        // Register form validation and submission
-        $("#register-form").validate({
-            rules: {
-                firstName: { required: true },
-                lastName: { required: true },
-                personalNumber: { required: true },
-                phoneNumber: { required: true },
-                registerEmail: { required: true, email: true },
-                registerPassword: { required: true, minlength: 6 },
-                confirmPassword: {
-                    required: true,
-                    equalTo: "[name='registerPassword']"
-                }
-            },
-            messages: {
-                firstName: '<li class="parsley-required">Emri është i detyrueshëm</li>',
-                lastName: '<li class="parsley-required">Mbiemri është i detyrueshëm</li>',
-                personalNumber: '<li class="parsley-required">Numri personal është i detyrueshëm</li>',
-                phoneNumber: '<li class="parsley-required">Numri telefonik është i detyrueshëm</li>',
-                registerEmail: '<li class="parsley-required">Email-i është i detyrueshëm</li>',
-                registerPassword: '<li class="parsley-required">Fjalëkalimi është i detyrueshëm</li>',
-                confirmPassword: '<li class="parsley-required">Fjalëkalimi duhet të përputhet</li>'
-            },
-            submitHandler: function (form) {
-                const raw = $(form).serializeArray();
-                const data = {
-                    firstName: raw.find(x => x.name === "firstName").value,
-                    lastName: raw.find(x => x.name === "lastName").value,
-                    personalNumber: raw.find(x => x.name === "personalNumber").value,
-                    phoneNumber: raw.find(x => x.name === "phoneNumber").value,
-                    email: raw.find(x => x.name === "registerEmail").value,
-                    password: raw.find(x => x.name === "registerPassword").value
-                };
-
-                Post(data, '/Auth/Register').done(function (res) {
-                    if (res.success) {
-                        showAlert(res.message, 'message', 'success');
-                    } else {
-                        showAlert(res.message, 'message', 'danger');
-                        if (res.message.toLowerCase().includes("email")) {
-                            $("[name='registerEmail']").addClass("is-invalid");
-                        } else if (res.message.toLowerCase().includes("numër personal")) {
-                            $("[name='personalNumber']").addClass("is-invalid");
-                        }
-                    }
-                });
-
-                return false;
-            }
-        });
+        // Initialize with no account type (or default to individual if you prefer)
+        setupRegisterValidation("");
 
         // Direct Payment form
         $("#pay-form").validate({
@@ -248,6 +371,20 @@
 
                 return false;
             }
+        });
+
+        // Attach handler for verify button
+        $('#verifyBtn').off('click').on('click', function() {
+            const code = $('#verificationCode').val().trim();
+            $('#verifyError').hide();
+            if (!/^[0-9]{6}$/.test(code)) {
+                $('#verifyError').text('Ju lutem vendosni një kod të vlefshëm 6-shifror.').show();
+                return;
+            }
+            // For now, just show a success message (simulate backend call)
+            // Replace this with your actual verification AJAX call later
+            $('#verifyModal').modal('hide');
+            showAlert('Kodi u pranua (simulim)!', 'message', 'success');
         });
     });
     $("#payNowBtn").click(function () {
@@ -308,5 +445,20 @@
             }
         });
     });
+
+    function selectAccountType(type) {
+        $("#accountType").val(type);
+        $("#accountTypeModal").modal('hide');
+
+        if (type === 'individual') {
+            $("#individual-form").show();
+            $("#business-form").hide();
+        } else {
+            $("#individual-form").hide();
+            $("#business-form").show();
+        }
+
+        setupRegisterValidation(type); // Dynamically update validation
+    }   
 </script>
 

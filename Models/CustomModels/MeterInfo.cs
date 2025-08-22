@@ -3,9 +3,9 @@
     public class MeterInfo
     {
         public string? SerialNumber { get; set; }
-        public int CurrentReading { get; set; }
-        public int PreviousReading { get; set; }
-        public int LastConsumption { get; set; }
+        public decimal CurrentReading { get; set; }
+        public decimal PreviousReading { get; set; }
+        public decimal LastConsumption { get; set; }
         public string? LastReadingPeriod { get; set; }
     }
 }

@@ -126,7 +126,7 @@ public class PaymentHelper
             {
                 var hppUrl = $"{data.Order.HppUrl}?id={data.Order.Id}&password={data.Order.Password}";
                  await _repo.InsertInitializedPaymentPublic(orderAmount, customerCode, number, email,data.Order.Id);
-                _repo.InsertPaymentInitializationData(data.Order.Id, data.Order.Password!, customerCode);
+                 await _repo.InsertPaymentInitializationData(data.Order.Id, data.Order.Password!, customerCode);
                 return new TransactionResponse
                 {
                     Status = "OK",
@@ -151,7 +151,7 @@ public class PaymentHelper
         {
             string storeKey = _config["PaymentSettings:PCB_StoreKey"];
             string storePass = _config["PaymentSettings:PCB_StorePass"];
-            string getOrderURL = $"{_config["PaymentSettings:PCB_GetOrderDetailsURL"]}/{orderId}?password={password}";
+            string getOrderURL = $"{_config["PaymentSettings:PCB_GetOrderDetailsURL"]}/{orderId}?password={password}&tokenDetailLevel=2&tranDetailLevel=1";
 
             if (string.IsNullOrWhiteSpace(storeKey) || string.IsNullOrWhiteSpace(storePass) || string.IsNullOrWhiteSpace(getOrderURL))
             {
@@ -197,9 +197,12 @@ public class PaymentHelper
                     OrderId = result.Order.Id,
                     Amount = result.Order.Amount?.ToString("F2"),
                     Currency = result.Order.Currency,
-                    ApprovalCode = result.Order.ApprovalCode,
-                    CardBrand = result.Order.CardBrand,
-                    MaskedPan = result.Order.MaskedPan,
+                    ApprovalCode = result.Order.Trans?.FirstOrDefault()?.ApprovalCode,
+                    CardBrand = result.Order.SrcToken?.Card?.Brand,
+                    MaskedPan = result.Order.SrcToken?.DisplayName,
+                    LastFourDigits = result.Order.SrcToken?.DisplayName?.Length >= 4
+                     ? result.Order.SrcToken.DisplayName[^4..]
+                     : null,
                     CreateTime = result.Order.CreateTime,
                     ErrorMessage = transactionStatus == "FAILED" ? "Payment failed." : null
                 };

@@ -21,6 +21,8 @@ namespace ClientPortalBifurkacioni.DbConnection
         public DbSet<ExpenseByYear> ExpenseByYear { get; set; }
         public DbSet<RegisterMessage> RegisterMessages { get; set; }
         public DbSet<StringResult> StringResult { get; set; }
+        public DbSet<EmailConfirmationCode> EmailConfirmationCode { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

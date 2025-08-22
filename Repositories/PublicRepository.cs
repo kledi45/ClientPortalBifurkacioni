@@ -33,7 +33,7 @@ namespace ClientPortalBifurkacioni.Repositories
                .FirstOrDefault();
         }
 
-        public async void UpdatePublicPayment(int idPayment)
+        public async Task UpdatePublicPayment(int idPayment)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace ClientPortalBifurkacioni.Repositories
 
            
                 await _context.Database.ExecuteSqlRawAsync(
-                    "EXEC UpdatePublicPayment @ID",
+                    "EXEC dbo.UpdatePublicPayment @ID",
                     parameters);
 
             }
@@ -81,7 +81,7 @@ namespace ClientPortalBifurkacioni.Repositories
         }
 
 
-        public async void InsertPaymentInitializationData(int IDPayment, string paymentPassword, string CustomerCode)
+        public async Task InsertPaymentInitializationData(int IDPayment, string paymentPassword, string CustomerCode)
         {
             try
             {

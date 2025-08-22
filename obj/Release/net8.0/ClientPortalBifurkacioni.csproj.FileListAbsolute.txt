@@ -83,3 +83,7 @@ C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPort
 C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\obj\Release\net8.0\ClientPortalBifurkacioni.pdb
 C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\obj\Release\net8.0\ClientPortalBifurkacioni.genruntimeconfig.cache
 C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\obj\Release\net8.0\ref\ClientPortalBifurkacioni.dll
+C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\obj\Release\net8.0\ClientPortalBifurkacioni.sourcelink.json
+C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\bin\Release\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\bin\Release\net8.0\MailKit.dll
+C:\Users\kledi\OneDrive\Desktop\Bifurkacioni\ClientPortalBifurkacioni\ClientPortalBifurkacioni\bin\Release\net8.0\MimeKit.dll

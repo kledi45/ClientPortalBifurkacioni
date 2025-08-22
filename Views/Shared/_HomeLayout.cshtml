@@ -45,10 +45,10 @@
                 <div class="dropdown d-flex align-items-center gap-2 border-start ps-3">
                     <span class="text-white fw-semibold">@User.Identity?.Name</span>
                     <button class="btn btn-sm bg-white rounded-circle dropdown-toggle p-0 border-0" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="width: 32px; height: 32px;">
-                        <i class="bi bi-person" style="color: #3C8CCB;"></i>
+                        <i class="bi bi-person" style="color: #3C8CCB;"></i> @(User.Claims.FirstOrDefault(c => c.Type == "Name")?.Value ?? "")
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                        <li><a class="dropdown-item text-danger" href="#" id="signOutBtn">Sign Out</a></li>
+                        <li><a class="dropdown-item text-danger" href="#" id="signOutBtn">Dilni</a></li>
                     </ul>
                 </div>
             </nav>

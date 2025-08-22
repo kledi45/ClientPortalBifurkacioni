@@ -5,28 +5,33 @@ namespace ClientPortalBifurkacioni.Helpers
 {
     public class PasswordHelper
     {
-        public static string GenerateSalt()
+        public string Hash { get; private set; }
+        public string Salt { get; private set; }
+
+        public PasswordHelper(string password)
         {
-            var bytes = new byte[16];
-            using (var rng = RandomNumberGenerator.Create())
-                rng.GetBytes(bytes);
-            return Convert.ToBase64String(bytes);
+            var saltBytes = new byte[32];
+            using (var provider = new RNGCryptoServiceProvider())
+                provider.GetNonZeroBytes(saltBytes);
+            Salt = Convert.ToBase64String(saltBytes);
+            Hash = ComputeHash(Salt, password);
         }
 
-        public static string HashPassword(string password, string salt)
+        public static string ComputeHash(string salt, string password)
         {
-            var combined = password + salt;
-            using (SHA256 sha256 = SHA256.Create())
+            var saltBytes = Convert.FromBase64String(salt);
+            using (var rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, saltBytes, 1000))
+                return Convert.ToBase64String(rfc2898DeriveBytes.GetBytes(256));
+        }
+
+        public static bool Verify(string salt, string hash, string password)
+        {
+            if (salt != null && hash != null)
             {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(combined));
-                return Convert.ToBase64String(bytes);
+                string computedHash = ComputeHash(salt, password);
+                return hash == computedHash;
             }
-        }
-
-        public static bool VerifyPassword(string enteredPassword, string storedSalt, string storedHash)
-        {
-            string hashOfInput = HashPassword(enteredPassword, storedSalt);
-            return hashOfInput == storedHash;
+            return false;
         }
     }
 }

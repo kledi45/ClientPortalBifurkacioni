@@ -4,6 +4,7 @@ using ClientPortalBifurkacioni.Models.Entities;
 using ClientPortalBifurkacioni.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,10 +16,12 @@ namespace ClientPortalBifurkacioni.Controllers
     public class AuthController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IOptions<SmtpSettings> _smtpOptions;
 
-        public AuthController(ApplicationDbContext context)
+        public AuthController(ApplicationDbContext context, IOptions<SmtpSettings> smtpOptions)
         {
             _context = context;
+            _smtpOptions = smtpOptions;
         }
 
         [HttpPost]
@@ -27,7 +30,7 @@ namespace ClientPortalBifurkacioni.Controllers
         {
             try
             {
-                var repo = new PublicUserRepository(_context);
+                var repo = new PublicUserRepository(_context, _smtpOptions);
                 var (user, message) = repo.Login(request.Email, request.Password);
 
                 if (user == null)
@@ -37,12 +40,11 @@ namespace ClientPortalBifurkacioni.Controllers
 
                 var token = GenerateJwtToken(user);
 
-                // Set secure cookie
                 var cookieOptions = new CookieOptions
                 {
                     HttpOnly = true,
-                    Secure = true, // Set to false only in local development
-                    SameSite = SameSiteMode.Strict,
+                    Secure = true,
+                    SameSite = SameSiteMode.Lax,
                     Expires = DateTimeOffset.UtcNow.AddHours(1)
                 };
 
@@ -95,7 +97,7 @@ namespace ClientPortalBifurkacioni.Controllers
         [HttpPost]
         public async Task<IActionResult> Register([FromForm] RegisterRequest request)
         {
-            var repo = new PublicUserRepository(_context);
+            var repo = new PublicUserRepository(_context, _smtpOptions);
             var result = await repo.Register(request);
             string message = result switch
             {

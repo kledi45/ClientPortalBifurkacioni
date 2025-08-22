@@ -16,8 +16,11 @@ namespace ClientPortalBifurkacioni.Controllers
             _repo = new PublicRepository(context);
             _paymentHelper = paymentHelper;
         }
-        [HttpPost]
-        public async Task<IActionResult> SubmitPayment([FromQuery] string amount, [FromQuery] string code,[FromQuery] string email,
+        [HttpGet]
+        public async Task<IActionResult> MakeDirectPayment(
+            [FromQuery] string amount,
+            [FromQuery] string code,
+            [FromQuery] string email,
             [FromQuery] string phone)
         {
             try
@@ -34,14 +37,14 @@ namespace ClientPortalBifurkacioni.Controllers
 
                 if (transactionResult.Status == "OK")
                 {
-                    return Ok(new { success = true, url = transactionResult.Url });
+                    return Redirect(transactionResult.Url);
                 }
 
-                return BadRequest(new { success = false, message = "Nuk u inicializua pagesa." });
+                return Content("<h2 style='color:red'>Nuk u inicializua pagesa.</h2>", "text/html");
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { success = false, message = $"Gabim në server: {ex.Message}" });
+                return Content($"<h2 style='color:red'>Gabim në server: {ex.Message}</h2>", "text/html");
             }
         }
 
